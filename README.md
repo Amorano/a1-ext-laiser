@@ -1,4 +1,4 @@
-# LAISER
+# LAISER - Latent AI Image Searching
 
 Extension for [Automatic1111's webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) webui to search for images from latent image services like [PromptHero.com](https://prompthero.com).
 
