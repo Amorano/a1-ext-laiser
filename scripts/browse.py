@@ -10,10 +10,10 @@ from modules.generation_parameters_copypaste import create_buttons, ParamBinding
 
 _root = os.path.dirname(os.path.abspath(__file__))
 try:
-    with open(f"{_root}/service.json", 'r', encoding='utf-8') as data:
-         _SERVICE = json.load(data)
-except Exception as e:
-    print(e)
+    with open(f"{_root}/service.json", 'r', encoding='utf-8') as _data:
+        _SERVICE = json.load(_data)
+except Exception as _e:
+    print(_e)
     exit(-1)
 
 def api_search_service(text, service):
@@ -35,11 +35,11 @@ def api_search_service(text, service):
     out_data = []
     out_img = []
     mapper = service.get("map", {})
-    for entry in newdata:
-        if (nimg := entry.pop(key_img)) is None:
-            continue
 
-        out_img.append(nimg)
+    for entry in newdata:
+        if (nimg := entry.pop(key_img)):
+            out_img.append(nimg)
+
         if (meta := entry.get('metadata', None)):
             entry.update(meta)
             entry.pop('metadata')
@@ -69,17 +69,7 @@ def api_search(text, state_check):
             print(e)
         else:
             out_gallery.append(img)
-            if (mapper := service.get("map", None)) is None:
-                continue
-
-            for e in prompt:
-                data = {}
-                for k, t in mapper.items():
-                    if (v := e.get(k, None)) is None:
-                        continue
-                    data[t] = v
-                out_data.append(data)
-
+            out_data.extend(prompt)
             out_msg = f'==> {who} - {len(img)}\n{out_msg}'
 
     if (size := len(out_data)) < 1:
@@ -141,8 +131,7 @@ def ui():
                     show_label=False,
                     lines=3,
                     max_lines=3,
-                    interactive=False,
-                    visible=False
+                    interactive=False
                 ).style(container=False)
 
                 with gr.Row(variant="compact"):
@@ -154,7 +143,7 @@ def ui():
                 field_selection = gr.Textbox(
                     show_label=False,
                     elem_id="ph_selection"
-                )
+                ).style(container=False)
 
                 for tabname, button in send_to_buttons.items():
                     register_paste_params_button(ParamBinding(

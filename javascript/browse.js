@@ -18,8 +18,10 @@ const ph_current_index = function(data) {
     const idx = parseInt(field_index.value);
     var width = 512;
     var height = 512;
+    // seems to need more than a single field in the paste chain to work?
+    var hasData = false;
     let result = Object.keys(data[idx]).map(e => {
-        if (e == "Prompt") {
+        if (e == "prompt") {
             return `${data[idx][e]}\n`;
         } else if (e == "Negative prompt") {
             return `Negative prompt: ${data[idx][e]}\n`;
@@ -30,10 +32,13 @@ const ph_current_index = function(data) {
             height = data[idx][e];
             return;
         }
+        hasData = true;
         return `${e}: ${data[idx][e]}, `;
     });
-    result.push(`Size: ${width}x${height}`);
-    return result.join("");
+    if (hasData) {
+        result.push(`Size: ${width}x${height}`);
+    }
+    return result.join("") + "\n";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
