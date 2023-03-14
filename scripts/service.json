@@ -1,0 +1,41 @@
+{
+    "prompthero": {
+        "name": "PromptHero",
+        "url_find": "https://prompthero.com/api/v1/search?q=",
+
+        "key_out": "results",
+        "key_img": "main_image",
+        "err": "errors",
+        "map": {
+            "prompt": "prompt",
+            "negative_prompt": "Negative prompt",
+            "width": "width",
+            "height": "height",
+            "sampler": "Sampler",
+            "num_inference_steps": "Steps",
+            "guidance_scale": "CFG scale",
+            "c": "CFG scale",
+            "seed": "Seed",
+            "replicate_model_version": "Model hash",
+            "clipckip": "Clip skip"
+        }
+    },
+    "lexica": {
+        "name": "Lexica",
+        "url_find": "https://lexica.art/api/v1/search?q=",
+        "key_out": "images",
+        "key_img": "src",
+        "err": "errors",
+        "map": {
+            "prompt": "prompt",
+            "negative_prompt": "Negative prompt",
+            "width": "width",
+            "height": "height",
+            "sampler": "Sampler",
+            "steps": "Steps",
+            "guidance": "CFG scale",
+            "seed": "Seed",
+            "model": "Model"
+        }
+    }
+}
