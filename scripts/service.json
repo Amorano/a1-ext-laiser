@@ -16,6 +16,8 @@
             "guidance_scale": "CFG scale",
             "c": "CFG scale",
             "seed": "Seed",
+            "model_used": "model",
+            "model_used_version": "version",
             "replicate_model_version": "Model hash",
             "clipckip": "Clip skip"
         }

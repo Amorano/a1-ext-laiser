@@ -48,6 +48,21 @@ def api_search_service(text, service):
         for field, value in entry.items():
             if (v := mapper.get(field, None)):
                 data[v] = value
+
+        # remap to size variable auto1111 likes
+        w = data.pop("width", 512)
+        h = data.pop("height", 512)
+        data["Size"] = f"{w}x{h}"
+
+        key = list(data)
+        for k in key:
+            if data[k] is None:
+                data.pop(k)
+
+        m = data.pop("model", "Unknown")
+        v = data.pop("version", "v0")
+        data["Model"] = f"{m} {v}"
+
         out_data.append(data)
 
     return out_img, out_data
